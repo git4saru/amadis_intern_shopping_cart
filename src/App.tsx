@@ -4,7 +4,8 @@ import { Cart } from './components/Cart'
 import { Products } from './components/Products'
 import { Header } from './components/Header'
 import './app.module.scss'
-import AdminPage from './components/Adminpage'
+import AdminPage from './components/AdminPage'
+
 
 function App() {
   return (
@@ -14,7 +15,11 @@ function App() {
         <Routes>
         <Route
          path="/AdminPage"
-         element={<AdminPage />}
+         element={<AdminPage onAddProduct={function (product: { name: string; price: number }): void {
+           throw new Error('Function not implemented.')
+         } } onRemoveProduct={function (productId: number): void {
+           throw new Error('Function not implemented.')
+         } } />}
          />
         <Route
             path="/"
