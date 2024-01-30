@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
-import React from 'react';
-import App from "./src/App.tsx"
+import App from "./App.tsx"
 
 describe('App', () => {
   it('should renders correctly', async () => {

@@ -4,6 +4,7 @@ import { Cart } from './components/Cart'
 import { Products } from './components/Products'
 import { Header } from './components/Header'
 import './app.module.scss'
+import AdminPage from './components/Adminpage'
 
 function App() {
   return (
@@ -11,7 +12,11 @@ function App() {
       <Header/>
       <main>
         <Routes>
-          <Route
+        <Route
+         path="/AdminPage"
+         element={<AdminPage />}
+         />
+        <Route
             path="/"
             element={<Products />}
           />
