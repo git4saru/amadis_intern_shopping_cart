@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 
 interface AdminPageProps {
@@ -15,6 +16,8 @@ const AdminPage: React.FC<AdminPageProps> = ({ onAddProduct, onRemoveProduct }) 
     if (productName && !isNaN(price) && price > 0) {
       onAddProduct({ name: productName, price });
       setProductName('');
+
+      
       setProductPrice('');
     }
   };
