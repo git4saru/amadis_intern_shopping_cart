@@ -12,9 +12,10 @@ const AdminPage: React.FC<AdminPageProps> = ({ onAddProduct, onRemoveProduct }) 
 
   const handleAddProduct = () => {
     const price = parseFloat(productPrice);
-
+    //validation to check if productName is not empty and price is a positive number
     if (productName && !isNaN(price) && price > 0) {
       onAddProduct({ name: productName, price });
+      //placeholder to write to database
       setProductName('');
 
       
@@ -45,9 +46,7 @@ const AdminPage: React.FC<AdminPageProps> = ({ onAddProduct, onRemoveProduct }) 
       <br />
       <button onClick={handleAddProduct}>Add Product</button>
       <ul>
-        {/* Display existing products with a remove button */}
-        {/* Assume products have unique IDs */}
-        {/* Use a better approach in a real application, such as UUIDs */}
+        {/* Display existing products with a remove button.Hardcoded for testing */}
         <li>
           Product 1 - $10.99 <button onClick={() => handleRemoveProduct(1)}>Remove</button>
         </li>

@@ -1,19 +1,56 @@
 // src/components/LoginPage.tsx
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import useAuth from "../../hooks/useAuth";
 
 interface LoginProps {
   onLogin: (username: string, password: string) => void;
 }
 
+//hard coded data for testing admin and login page
+function AuthenticateUserService(username: string, password: string): any {
+  const dbUserDatas = [
+    {
+      id: 4566,
+      role: "user",
+      name: "Harshan",
+      email: "harshan@gmail.com",
+      password: "harshan",
+    },
+    {
+      id: 4569,
+      role: "admin",
+      name: "Vignesh",
+      email: "vignesh@gmail.com",
+      password: "vignesh",
+    },
+  ];
+  for (let user of dbUserDatas) {
+    if (user.email === username && user.password === password) {
+      return user;
+    }
+  }
+
+  return null;
+}
+
 const LoginPage: React.FC<LoginProps> = ({ onLogin }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const { signin } = useAuth();
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    // Add authentication logic here, for simplicity, assume the login is successful
-    onLogin(username, password);
+    const user = AuthenticateUserService(username, password);
+    console.log("user details="+user);
+    if (user) { //Not null
+      signin(user, () => {
+        console.log("Login successful");
+      });
+    } else {
+      alert("Login failed. Please check the credentials");
+      // handle failed login attempt here
+    }
   };
 
   return (
