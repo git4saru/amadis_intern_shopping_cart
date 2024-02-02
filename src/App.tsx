@@ -20,6 +20,8 @@ import useLocalStorageState from "use-local-storage-state";
 
 import AuthContext, { UserType } from "./contexts/authContext";
 import useAuth from "./hooks/useAuth";
+import AdminLoginPage from "./components/AdminLoginPage/AdminLoginPage";
+import UserLoginPage from "./components/UserLoginPage/UserLoginPage";
 
 function useProvideAuth() {
   const [user, setUser] = useLocalStorageState<UserType | null>("user", {});
@@ -33,10 +35,15 @@ function useProvideAuth() {
     }, 1000);
   };
 
-  const signout = (cb: () => void) => {
+  const signout = (userData: UserType ,cb: () => void) => {
     setTimeout(() => {
       setUser(null);
-      navigate("/login");
+      console.log("Signout",userData);
+      if(userData.role==="admin"){
+        navigate("/adminLogin");
+      }else{
+        navigate("/userLogin");
+      }
       cb();
     }, 1000);
   };
@@ -91,7 +98,8 @@ function App() {
               <Route path="/" element={<Products />} />
               {/* <Route path="/cart" element={<Cart />} /> */}
             </Route>
-            <Route path="/login" element={<LoginPage />} />
+            <Route path="/adminLogin" element={<AdminLoginPage userType={"admin"} />} />
+            <Route path="/userLogin" element={<UserLoginPage userType={"user"}/>} />
           </Routes>
         </main>
       </ProvideAuth>

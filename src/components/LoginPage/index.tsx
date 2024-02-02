@@ -1,7 +1,8 @@
 // src/components/loginpage/index.tsx
 
 import React from "react";
-import LoginPage from "./LoginPage"; // Make sure the import path is correct
+import AdminLoginPage from "../AdminLoginPage/AdminLoginPage";
+import UserLoginPage from "../UserLoginPage/UserLoginPage";
 
 export type Account = {
   id: number;
@@ -13,9 +14,8 @@ const SomeOtherComponent: React.FC = () => {
   // You can use LoginPage here
   return (
     <div>
-      <LoginPage
-        onLogin={(username, password) => console.log(username, password)}
-      />
+      {/* <AdminLoginPage userType={"admin"} /> */}
+      <UserLoginPage userType={"user"} />
     </div>
   );
 };

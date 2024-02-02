@@ -2,13 +2,15 @@
 
 import React, { useState } from "react";
 import useAuth from "../../hooks/useAuth";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 
-interface LoginProps {
-  onLogin: (username: string, password: string) => void;
+export interface LoginProps {
+  userType: "admin" | "user";
 }
 
 //hard coded data for testing admin and login page
-function AuthenticateUserService(username: string, password: string): any {
+
+function AuthenticateUserService(username: string, password: string, userType: "admin" | "user"): any {
   const dbUserDatas = [
     {
       id: 4566,
@@ -17,6 +19,7 @@ function AuthenticateUserService(username: string, password: string): any {
       email: "harshan@gmail.com",
       password: "harshan",
     },
+    
     {
       id: 4569,
       role: "admin",
@@ -25,7 +28,10 @@ function AuthenticateUserService(username: string, password: string): any {
       password: "vignesh",
     },
   ];
-  for (let user of dbUserDatas) {
+  console.log(username+'  role='+userType);
+  const filteredUsers = dbUserDatas.filter(user => user.role === userType);
+  console.log('filtered users====>'+filteredUsers);
+  for (let user of filteredUsers) {
     if (user.email === username && user.password === password) {
       return user;
     }
@@ -33,15 +39,15 @@ function AuthenticateUserService(username: string, password: string): any {
 
   return null;
 }
-
-const LoginPage: React.FC<LoginProps> = ({ onLogin }) => {
+//To check login credentials
+const LoginPage: React.FC<LoginProps> = ({ userType }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { signin } = useAuth();
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    const user = AuthenticateUserService(username, password);
+    const user = AuthenticateUserService(username, password, userType);
     console.log("user details="+user);
     if (user) { //Not null
       signin(user, () => {
@@ -79,6 +85,11 @@ const LoginPage: React.FC<LoginProps> = ({ onLogin }) => {
         <br />
         <button type="submit">Login</button>
       </form>
+
+      
+      <p>
+        Don't have an account? <Link to="/register">Register here</Link>.
+      </p>
     </div>
   );
 };

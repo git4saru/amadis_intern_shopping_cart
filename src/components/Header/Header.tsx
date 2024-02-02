@@ -85,7 +85,7 @@ export const Header: FunctionComponent = () => {
           {isAuthenticated && (
             <button
               onClick={() =>
-                signout(() => {
+                signout(user,() => {
                   console.log("logout success");
                 })
               }

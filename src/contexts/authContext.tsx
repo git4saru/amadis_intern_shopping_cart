@@ -12,7 +12,7 @@ export interface AuthContextProps {
   user: UserType | null | undefined;
   isAuthenticated: boolean;
   signin: (user: UserType, cb: () => void) => void;
-  signout: (cb: () => void) => void;
+  signout: (user: UserType, cb: () => void) => void;
 }
 
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
