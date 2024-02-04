@@ -1,20 +1,17 @@
-import { createContext, useState, useContext, ReactNode } from "react";
+import { ReactNode } from "react";
 import {
   BrowserRouter,
   Route,
   Routes,
   Navigate,
   Outlet,
-  redirect,
   useNavigate,
 } from "react-router-dom";
 import { Footer } from "./components/Footer";
-import { Cart } from "./components/Cart";
 import { Products } from "./components/Products";
 import { Header } from "./components/Header";
 import "./app.module.scss";
 import AdminPage from "./components/AdminPage";
-import LoginPage from "./components/LoginPage";
 
 import useLocalStorageState from "use-local-storage-state";
 
@@ -35,14 +32,13 @@ function useProvideAuth() {
     }, 1000);
   };
 
-  const signout = (userData: UserType ,cb: () => void) => {
+  const signout = (userData: UserType, cb: () => void) => {
     setTimeout(() => {
       setUser(null);
-      console.log("Signout",userData);
-      if(userData.role==="admin"){
-        navigate("/adminLogin");
-      }else{
-        navigate("/userLogin");
+      if (userData.role === "admin") {
+        location.href = "/adminLogin";
+      } else {
+        location.href = "/userLogin";
       }
       cb();
     }, 1000);
@@ -71,6 +67,7 @@ export const ProtectedRoute = () => {
   }
 
   return <Outlet />;
+  
 };
 
 function App() {
