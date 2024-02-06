@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './AdminPage.css';
 
 interface AdminPageProps {
   onAddProduct: (product: { name: string; price: number }) => void;
@@ -92,8 +93,9 @@ const AdminPage: React.FC<AdminPageProps> = ({ onAddProduct, onRemoveProduct }) 
     }
   };
 
+
   return (
-    <div>
+    <div className="container">
       <h2>Admin Page</h2>
       <label>
         Product Name:
@@ -109,17 +111,52 @@ const AdminPage: React.FC<AdminPageProps> = ({ onAddProduct, onRemoveProduct }) 
         />
       </label>
       <br />
-      <button onClick={handleAddProduct}>Add Product</button>
+      <button className="add-button" onClick={handleAddProduct}>Add Product</button>
       <ul>
         {products.map((product) => (
           <li key={product.id}>
             {product.title} - ${product.price.toFixed(2)}{' '}
-            <button onClick={() => handleRemoveProduct(product.id)}>Remove</button>
+            <button className="remove-button" onClick={() => handleRemoveProduct(product.id)}>Remove</button>
           </li>
         ))}
       </ul>
     </div>
   );
+  
+
+
+
+
+
+
+  // return (
+  //   <div>
+  //     <h2>Admin Page</h2>
+  //     <label>
+  //       Product Name:
+  //       <input type="text" value={productName} onChange={(e) => setProductName(e.target.value)} />
+  //     </label>
+  //     <br />
+  //     <label>
+  //       Product Price:
+  //       <input
+  //         type="number"
+  //         value={productPrice}
+  //         onChange={(e) => setProductPrice(e.target.value)}
+  //       />
+  //     </label>
+  //     <br />
+  //     <button onClick={handleAddProduct}>Add Product</button>
+  //     <ul>
+  //       {products.map((product) => (
+  //         <li key={product.id}>
+  //           {product.title} - ${product.price.toFixed(2)}{' '}
+  //           <button onClick={() => handleRemoveProduct(product.id)}>Remove</button>
+  //         </li>
+  //       ))}
+  //     </ul>
+  //   </div>
+  // );
 };
 
 export default AdminPage;
