@@ -9,14 +9,13 @@ export type Account = {
   role: "user" | "admin";
 };
 
-const SomeOtherComponent: React.FC = () => {
-  // You can use LoginPage here
+function LoginPageComponent() {
   return (
     <div>
-      {/* <AdminLoginPage userType={"admin"} /> */}
-      <UserLoginPage userType={"user"} />
+      <button>Login as Admin</button>
+      <button>Login as User</button>
     </div>
   );
-};
+}
 
-export default SomeOtherComponent;
+export default LoginPageComponent;

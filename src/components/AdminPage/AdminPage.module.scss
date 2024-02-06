@@ -1,0 +1,31 @@
+.addProductBtn{
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid gray;
+    background-color: blue;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+}
+.products{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    > div {
+        flex-basis: 30%;
+    }
+
+    .removeBtn {
+        background-color: red;
+        color: #fff;
+        margin-top: 8px;
+    }
+
+    @media screen and (max-width: 500px) {
+        > div {
+            flex-basis: 100%;
+        }
+        
+    }
+}

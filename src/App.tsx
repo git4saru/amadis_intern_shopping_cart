@@ -78,6 +78,14 @@ function App() {
         <Header />
         <main style={{ marginTop: "10rem" }}>
           <Routes>
+            <Route
+              path="/adminLogin"
+              element={<AdminLoginPage userType={"admin"} />}
+            />
+            <Route
+              path="/userLogin"
+              element={<UserLoginPage userType={"user"} />}
+            />
             <Route element={<ProtectedRoute />}>
               <Route
                 path="/admin"
@@ -95,8 +103,6 @@ function App() {
               <Route path="/" element={<Products />} />
               {/* <Route path="/cart" element={<Cart />} /> */}
             </Route>
-            <Route path="/adminLogin" element={<AdminLoginPage userType={"admin"} />} />
-            <Route path="/userLogin" element={<UserLoginPage userType={"user"}/>} />
           </Routes>
         </main>
       </ProvideAuth>
