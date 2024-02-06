@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import "./LoginPage.css";
 
 export interface LoginProps {
   userType: "admin" | "user";
@@ -60,9 +61,9 @@ const LoginPage: React.FC<LoginProps> = ({ userType }) => {
   };
 
   return (
-    <div>
+    <div className="login-container">
       <h2>Login</h2>
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleLogin} className="login-form">
         <label>
           Username:
           <input

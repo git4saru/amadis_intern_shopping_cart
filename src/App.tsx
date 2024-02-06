@@ -11,7 +11,7 @@ import { Footer } from "./components/Footer";
 import { Products } from "./components/Products";
 import { Header } from "./components/Header";
 import "./app.module.scss";
-import AdminPage from "./components/AdminPage";
+import AdminPage from "./components/AdminPage/AdminPage";
 
 import useLocalStorageState from "use-local-storage-state";
 
